@@ -1,10 +1,92 @@
-html, body {
-	width: 100%;
-	height: 100%;
+@import url('https://fonts.googleapis.com/css2?family=Slabo+13px&display=swap');
+
+:root {
+	--mobile-width: 500px;
 }
 
-.background{
-	background-image: linear-gradient(orange, blue);
+/* Design for mobile first */
+#mobile_nav_bar {
+	background-color: black;
+	float: left;
 	width: 100%;
-	height: 100%
+	bottom: 0%;
+	position: fixed;
+}
+
+#mobile_nav_bar.divider {
+	height: 4px;
+	background-color: #8EC2FF;
+}
+
+#burger_menu{
+	margin-top: 6px;
+	margin-bottom: 6px;
+	margin-right: 10px;
+	float: right;
+}
+
+@media only screen and (min-width: var(--mobile-width)) {
+	#mobile_nav_bar{
+	  display: none;
+	}
+	#mobile_nav_bar>*{
+	  display: none;
+	}
+}
+
+html, body {
+	padding: 0;
+	margin: 0;
+  font-family: 'Sen', sans-serif;
+}
+
+h1 {
+  font-size: 36pt;
+  color: white;
+  background-color: black;
+  text-align: center;
+}
+
+section#about{
+	height:10000px;
+}
+
+.emphasis_gradient{
+	font-weight: bold;
+  position: relative;
+  content: '';
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 );
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #E1FAFF), color-stop(100%, #298CFF));
+  background: -webkit-linear-gradient(top, #E1FAFF 0%, #298CFF 100%);
+  background:    -moz-linear-gradient(bottom, #E1FAFF 0%, #298CFF 100%);
+  background:     -ms-linear-gradient(bottom, #E1FAFF 0%, #298CFF 100%);
+  background:      -o-linear-gradient(bottom, #E1FAFF 0%, #298CFF 100%);
+}
+.emphasis_text{
+	text-align: center;
+  color: #FFF;
+  background: black;
+  mix-blend-mode: darken;
+  font-size: 48pt;
+  font-weight: ExtraBold;
+}
+
+.main_header {
+}
+
+section#landing_page {
+	background-color: black;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+main {
+	width: 100vw;
+}
+
+#preload {
+	display: none;
 }
