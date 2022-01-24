@@ -1,8 +1,45 @@
+@import url('https://fonts.googleapis.com/css2?family=Slabo+13px&display=swap');
+
+:root {
+	--mobile-width: 500px;
+}
+
+/* Design for mobile first */
+#mobile_nav_bar {
+	background-color: black;
+	display: block;
+}
+#mobile_nav_bar.divider {
+	height: 4px;
+	background-color: #8EC2FF;
+}
+
+#burger_menu{
+	margin-top: 6px;
+	margin-bottom: 6px;
+}
+
+@media only screen and (min-width: var(--mobile-width)) {
+	#mobile_nav_bar{
+	  display: none;
+	}
+}
+
 html, body {
 	width: 100%;
 	height: 100%;
 	padding: 0;
 	margin: 0;
+  font-family: 'Sen', sans-serif;
+}
+
+h1 {
+  font-size: 48px;
+}
+h1.emphasis{
+	font-size: 64px;
+	font-weight: bold;
+	color: #8EC2FF;
 }
 
 #site_container{
