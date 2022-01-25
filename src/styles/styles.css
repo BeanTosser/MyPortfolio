@@ -7,7 +7,7 @@
 /* Design for mobile first */
 #mobile_nav_bar {
 	background-color: black;
-	display: block;
+  bottom: 0px;
 }
 #mobile_nav_bar.divider {
 	height: 4px;
@@ -17,6 +17,8 @@
 #burger_menu{
 	margin-top: 6px;
 	margin-bottom: 6px;
+	
+	margin-right: 6px;
 }
 
 @media only screen and (min-width: var(--mobile-width)) {
@@ -35,17 +37,32 @@ html, body {
 
 h1 {
   font-size: 48px;
+  color: white;
+  background-color: black;
 }
-h1.emphasis{
+.emphasis_gradient{
 	font-size: 64px;
 	font-weight: bold;
-	color: #8EC2FF;
+  position: relative;
+  content: '';
+  display: block;
+  width: 260px;
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 );
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #E1FAFF), color-stop(100%, #298CFF));
+  background: -webkit-linear-gradient(top, #E1FAFF 0%, #298CFF 100%);
+  background:    -moz-linear-gradient(bottom, #E1FAFF 0%, #298CFF 100%);
+  background:     -ms-linear-gradient(bottom, #E1FAFF 0%, #298CFF 100%);
+  background:      -o-linear-gradient(bottom, #E1FAFF 0%, #298CFF 100%);
+}
+.emphasis_text{
+  color: #FFF;
+  background: black;
+  mix-blend-mode: darken;
 }
 
 #site_container{
-	background-image: linear-gradient(orange, blue);
+	background-color: black;
 	width: 100vw;
-	height: 10000px;
 }
 
 #preload {
