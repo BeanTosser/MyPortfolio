@@ -2,8 +2,8 @@ console.log("Running script");
 
 let windowHeight = window.innerHeight;
 const siteContainer = document.getElementById("site_container");
-const siteHeight = 10000;
-
-siteContainer.style = siteContainer.style + "height: " + siteHeight.toString() + "px";
-
+let siteHeight = siteContainer.clientHeight;
+console.log("siteHeight: " + siteHeight);
+console.log("windowHeight: " + windowHeight);
 window.scroll(0, siteHeight - windowHeight);
+console.log("scrolled to: " + (siteHeight - windowHeight));
