@@ -5,17 +5,19 @@
 }
 
 /* Design for mobile first */
-#mobile_nav_bar {
+#nav_bar {
 	background-color: black;
-	float: left;
-	width: 100%;
-	bottom: 0%;
 	position: fixed;
+	width: 100%;
+	background-color: green;
 }
 
-#mobile_nav_bar.divider {
-	height: 4px;
-	background-color: #8EC2FF;
+#desktop_nav_links {
+	float: right;
+}
+
+#desktop_nav_links > a, a:link, a:visited, a:focus, a:hover, a:active{
+	color: white;
 }
 
 #burger_menu{
@@ -25,11 +27,8 @@
 	float: right;
 }
 
-@media only screen and (min-width: var(--mobile-width)) {
-	#mobile_nav_bar{
-	  display: none;
-	}
-	#mobile_nav_bar>*{
+@media only screen and (min-width: 500px) {
+	#burger_menu {
 	  display: none;
 	}
 }
@@ -51,6 +50,7 @@ section#about{
 	height:10000px;
 }
 
+/*
 .emphasis_gradient{
 	font-weight: bold;
   position: relative;
@@ -62,11 +62,11 @@ section#about{
   background:     -ms-linear-gradient(bottom, #E1FAFF 0%, #298CFF 100%);
   background:      -o-linear-gradient(bottom, #E1FAFF 0%, #298CFF 100%);
 }
+*/
+
 .emphasis_text{
 	text-align: center;
-  color: #FFF;
-  background: black;
-  mix-blend-mode: darken;
+  color: rgb(114, 159, 207);
   font-size: 48pt;
   font-weight: ExtraBold;
 }
