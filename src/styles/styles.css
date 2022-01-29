@@ -9,6 +9,17 @@ li {
   list-style: none;
 }
 
+@media only screen and (max-width: 500px){
+	.desktop_only{
+	  display: none;
+	}
+}
+@media only screen and (min-width:501px){
+	.mobile_only{
+	  display: none;
+	}
+}
+
 /* Design for mobile first */
 #nav_bar {
 	background-color: black;
@@ -19,20 +30,30 @@ li {
 	align-items: center;
 }
 
+#nav_header {
+	display: flex;
+	justify-content: space-between;
+	overflow: hidden;
+}
+
 #nav_menu {
 	width: 100%;
 	display: flex;
-	justify-content: space-around;
 	align-items: center;
+	padding: 0;
+	margin-top: 1%;
+	margin-bottom: 1%
+}
+
+#nav_menu>li{
+	margin-left:1.5em;
 }
 
 #nav_menu > li > a, a:link, a:visited, a:focus, a:hover, a:active{
 	color: white;
-	font-size: 24pt;
+	font-size: 1.3rem;
 	font-weight: bold;
 	font-family: 'Sen', sans-serif;
-	padding: 0;
-	margin: 0;
 	text-decoration: none;
 }
 
