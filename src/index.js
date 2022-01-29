@@ -26,16 +26,25 @@ function updateNavBar(){
   console.log("Old innerHTML: " + navBar.innerHTML)
   if(isMobile){
     navBar.innerHTML = `
-      <img src="./images/Burger.png" alt="Burger Menu" id="burger_menu" />  
+	    <a name="home"></a>
+      	    <img src="./images/Burger.png" alt="Burger Menu" id="burger_menu" />  
     `
   } else {
     navBar.innerHTML = `
-      <nav id="desktop_nav_links">
-        <ul>
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
+    	<a name="home"></a>
+        <ul id="nav_menu">
+	  <li class="nav_link_container">
+            <a href="#home">Home</a>
+	  </li>
+	  <li class="nav_link_container">
+            <a href="#about">About</a>
+	  </li>
+	    <li class="nav_link_container">
           <a href="#work">Work</a>
-          <a href="#contact">Contact</a>
+	    </li>
+	  <li class="nav_link_container">
+            <a href="#contact">Contact</a>
+	  </li>
         </ul>
       </nav>  
     `

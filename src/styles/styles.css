@@ -2,6 +2,11 @@
 
 :root {
 	--mobile-width: 500px;
+	--nav-link-spacing: 1rem;
+}
+
+li {
+  list-style: none;
 }
 
 /* Design for mobile first */
@@ -9,17 +14,31 @@
 	background-color: black;
 	position: fixed;
 	width: 100%;
-	background-color: green;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 }
 
-#desktop_nav_links {
-	float: right;
+#nav_menu {
+	width: 100%;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
 }
 
-#desktop_nav_links > a, a:link, a:visited, a:focus, a:hover, a:active{
+#nav_menu > li > a, a:link, a:visited, a:focus, a:hover, a:active{
 	color: white;
+	font-size: 24pt;
+	font-weight: bold;
+	font-family: 'Sen', sans-serif;
+	padding: 0;
+	margin: 0;
+	text-decoration: none;
 }
 
+#nav_menu > li > a:active {
+  color: green;
+}
 #burger_menu{
 	margin-top: 6px;
 	margin-bottom: 6px;
@@ -27,16 +46,10 @@
 	float: right;
 }
 
-@media only screen and (min-width: 500px) {
-	#burger_menu {
-	  display: none;
-	}
-}
-
 html, body {
 	padding: 0;
 	margin: 0;
-  font-family: 'Sen', sans-serif;
+	font-family: 'Sen', sans-serif;
 }
 
 h1 {
@@ -66,7 +79,7 @@ section#about{
 
 .emphasis_text{
 	text-align: center;
-  color: rgb(114, 159, 207);
+  color: #8ec2ff;
   font-size: 48pt;
   font-weight: ExtraBold;
 }
