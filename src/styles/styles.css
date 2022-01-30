@@ -97,6 +97,11 @@ section#about{
 	height:10000px;
 }
 
+.nav_link.current_section{
+  text-decoration: underline;
+  color: #99CCFF;	
+}
+
 /*
 .emphasis_gradient{
 	font-weight: bold;
@@ -129,6 +134,11 @@ section#home {
 	display: flex;
 	justify-content: center;
 	align-items: center;
+}
+
+section#work {
+	height: 200vh;
+	background-color:gray;
 }
 
 main {
