@@ -5,19 +5,35 @@
 	--nav-link-spacing: 1rem;
 }
 
-li {
-  list-style: none;
+html, body {
+  padding: 0;
+  margin: 0;
+  font-family: 'Sen', sans-serif;
 }
 
 @media only screen and (max-width: 500px){
-	.desktop_only{
-	  display: none;
-	}
+  .desktop_only{
+    display: none;
+  }
+  html {
+    /* Mobile font size will be about 2/3 of desktop font size.*/
+    font-size: 10px;
+  }
 }
-@media only screen and (min-width:501px){
-	.mobile_only{
-	  display: none;
-	}
+@media only screen and (min-width:500px){
+  .mobile_only{
+    display: none;
+  }
+  html {
+  /* The default font size is already 16. 
+   * This CSS only reiterates this definition for clarity
+   */
+   font-size: 16px;
+  }
+}
+
+li {
+  list-style: none;
 }
 
 /* Design for mobile first */
@@ -34,6 +50,7 @@ li {
 	display: flex;
 	justify-content: space-between;
 	overflow: hidden;
+	font-size: 1.5rem;
 }
 
 #nav_menu {
@@ -49,17 +66,19 @@ li {
 	margin-left:1.5em;
 }
 
-#nav_menu > li > a, a:link, a:visited, a:focus, a:hover, a:active{
+.nav_link{
 	color: white;
-	font-size: 1.3rem;
+	font-size: 1em;
 	font-weight: bold;
 	font-family: 'Sen', sans-serif;
 	text-decoration: none;
 }
 
-#nav_menu > li > a:active {
-  color: green;
+.nav_link.selected{
+	text-decoration: underline;
+	color: #001133;
 }
+
 #burger_menu{
 	margin-top: 6px;
 	margin-bottom: 6px;
@@ -67,14 +86,8 @@ li {
 	float: right;
 }
 
-html, body {
-	padding: 0;
-	margin: 0;
-	font-family: 'Sen', sans-serif;
-}
-
 h1 {
-  font-size: 36pt;
+  font-size: 1em;
   color: white;
   background-color: black;
   text-align: center;
@@ -101,14 +114,15 @@ section#about{
 .emphasis_text{
 	text-align: center;
   color: #8ec2ff;
-  font-size: 48pt;
+  font-size: .75em;
   font-weight: ExtraBold;
 }
 
 .main_header {
+	font-size: 3rem;
 }
 
-section#landing_page {
+section#home {
 	background-color: black;
 	width: 100vw;
 	height: 100vh;

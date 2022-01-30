@@ -1,39 +1,44 @@
 const MOBILE_WIDTH_THRESHOLD = 500;
 
 let isMobile = false;
-
-let sectionHeights = [];
+/*
+ * The auto window scroll that occurs when nav links are clicked takes place over many frames.
+ * Keep track of whether this scrolling process is happening, because we don't want to test for
+ * the current page section on every call to "onScollY"
+ */
+let isScrolling = false;
+let sectionPositions = [];
+let currentSection = "home";
 
 const printScrollHeight = function () {
   let currentScrollHeight = window.scrollY;
-  console.log("Current scroll position: " + currentScrollHeight);
-  console.log("current section: " + window.location.pathname + "     " + window.location.hash);
+  sectionPositions.forEach(sectionPosition => {
+    if(window.scrollY >= sectionPosition.position){
+      currentSection = sectionPosition.name;
+      return;
+    }
+  })
 };
+
+function handleClick(element){
+  let rect = element.getBoundingClientRect();
+  let position = rect.top;
+  isScrolling = true;
+  scrollWindowForDuration(position, 100, function() {isScrolling = false;});
+}
 
 window.onload = () => {
   // Check if the window width indicates this is likely a mobile device
   if(window.innerWidth < MOBILE_WIDTH_THRESHOLD){
     isMobile = true;
   }
-  
-  const siteContainer = document.getElementById("site_container");
-  let siteHeight = siteContainer.clientHeight;
 
   const sections = document.getElementsByClassName("section");
-  sectionHeights = Array.prototype.map.call(sections, (section, index) => {
-    let sectionName;
-    switch(index){
-      case 0:
-        sectionName = "Landing";
-        break;
-      case 1:
-        sectionName = "About";
-        break;
-      default:
-        sectionName = "Error";
-    }
-    console.log("section height: " + section.clientHeight);
-    return {name: sectionName, height: section.clientHeight};
+  sectionPositions = Array.prototype.map.call(sections, section => {
+    console.log("section id: " + section.id);
+    console.log("section position: " + section.getBoundingClientRect().top);
+    let sectionName = section.id;
+    return {name: sectionName, position: section.getBoundingClientRect().top};
   })
 
   document.addEventListener("scroll", printScrollHeight);
