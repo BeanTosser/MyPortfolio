@@ -10,31 +10,31 @@ let isScrolling = false;
 
 let sectionPositions = [];
 // default current section to home
-let currentSectionIndex = 0;
+let currentSectionIndex;
 let sections = [];
 let navLinks = [];
 
 // When the window scroll position changes, check to see if the page section on screen has changed and change navlink styling accordingly
 const onScroll = function () {
-  console.log("Current scroll position: " + window.scrollY);
   let shouldSkip = false;
   sectionPositions.forEach((sectionPosition, index) => {
     
     // if we haven't already changed to a new section on this scroll instance:
     if(!shouldSkip){
       // If the top of the current window scroll position is between the top and bottom of this section
-      console.log("checking section " + sectionPosition.name);
-      console.log("window position: " + window.scrollY + "; section top: " + sectionPosition.boundingRect.top + "; bottom: " + sectionPosition.boundingRect.bottom);
       if(window.scrollY >= sectionPosition.boundingRect.top && window.scrollY <= sectionPosition.boundingRect.bottom){
         //This is the current section on screen. Style it's corresponding navlink accordingly...
         console.log("Found the current section: " + sections[index].id);
-        // ... IF it is not already the current section
-        if(currentSectionIndex != index){ 
-          console.log("Crossed into a new section from " + sections[currentSectionIndex].id);
-          navLinks[currentSectionIndex].className = "nav_link";
-          console.log("current section is now: " + sections[index].id);
+        // ... IF it is not already the current section or if the current section has not been set yet
+        console.log("currentSectionIndex: " + currentSectionIndex + "; index: " + index);
+        if(currentSectionIndex !== index || currentSectionIndex === undefined){ 
+          // No need to reset the classname if it was never changed in the first place
+          if(currentSectionIndex !== undefined){
+            navLinks[currentSectionIndex].className = "nav_link";
+          }
           currentSectionIndex = index;
           navLinks[currentSectionIndex].className += " current_section"
+          console.log("Just set current section link");
         }
         shouldSkip = true;  
       }
@@ -44,11 +44,21 @@ const onScroll = function () {
   shouldSkip = false;
 };
 
-function handleClick(element){
-  let rect = element.getBoundingClientRect();
-  let position = rect.top;
-  isScrolling = true;
-  scrollWindowForDuration(position, 100, function() {isScrolling = false;});
+function handleLinkClick(element){
+  let sectionName = element.id;
+  let position;
+  console.log("clicked link name: " + sectionName);
+  for(let i = 0; i < sections.length; i++){
+    console.log("Checking against section with name " + sections[i].id);
+    if(sections[i].id === sectionName){
+      position = sections[i].getBoundingClientRect().top;
+      console.log("position to scroll to: " + position);
+      isScrolling = true;
+      scrollWindowForDuration(position, 100, function() {isScrolling = false});
+      return;
+    }
+  }
+  throw new Error("Can't scroll to a nonexistant section");
 }
 
 window.onload = () => {
@@ -69,4 +79,6 @@ window.onload = () => {
   })
 
   document.addEventListener("scroll", onScroll);
+  // Run onScroll to find out which section is the current section and style its link accordingly
+  onScroll();
 };
