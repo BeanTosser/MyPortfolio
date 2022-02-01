@@ -3,11 +3,12 @@
   <head>
     <title>Mike Jones</title>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="height=device-height, width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no, target-densitydpi=device-dpi">
     <link rel="stylesheet" href="./styles/styles.css">
   </head>
   
   <body>
+    
     <header id="nav_header">
       <nav id="nav_bar">
         <ul id="nav_menu" class="desktop_only">
@@ -23,10 +24,11 @@
 	        <li class="nav_link_container desktop_only">
 	          <div class="nav_link" id="contact" onClick="handleLinkClick(this)">Contact</div>
 	        </li>
-        </ul>
+          </ul>
         <img src="./images/Burger.png" alt="Burger Menu" id="burger_menu" class="mobile_only"/>
       </nav>
     </header>
+    
     <main id="site_container">
       <section id="home" class="section">
 	      <div id="main_header">
@@ -39,10 +41,13 @@
 	      </div>
       </section>
       <section id="about" class="section">
-        &nbsp;
+        <h1>About</h1>
       </section>
       <section id="work" class="section">
-        &nbsp;
+        <h1>Work</h1>
+      </section>
+      <section id="contact" class="section">
+        <h1>Contact</h1>
       </section>
     </main>
     <script src="./jsTools.js"></script>

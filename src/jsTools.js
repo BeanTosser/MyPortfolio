@@ -6,16 +6,19 @@
  * of milliseconds.
  */
 function scrollWindowForDuration(destinationScalar, duration, finishedCallback){
+  console.log("destination scalar: " + destinationScalar);
   // NOTE - destinationScalar is RELATIVE to the starting scroll position, because element client rect coordinates are relative to the CURRENT viewport.
   let scrollStep = destinationScalar / duration;
   let scrollStepDistance = Math.abs(scrollStep);
   // We need to know the destination position relative to the document as a whole in order to test if the window has scrolled to it.
   let absoluteDestination = window.scrollY + destinationScalar;
   let scrollInterval = setInterval(function(){
-    if(Math.abs(window.scrollY - absoluteDestination) >  scrollStepDistance){
+    console.log("window.scrolly: " + window.scrollY + "; abs dest: " + absoluteDestination);
+    if(Math.abs(window.scrollY - absoluteDestination) > scrollStepDistance){
       window.scrollBy(0, scrollStep);
     } else {
-      window.scrollTo(window.scrollX, destinationScalar);
+      console.log("Arriving at destination");
+      window.scrollTo(window.scrollX, absoluteDestination);
       clearInterval(scrollInterval);
       finishedCallback();
     }

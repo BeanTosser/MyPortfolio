@@ -9,7 +9,6 @@ let isMobile = false;
 let isScrolling = false;
 
 let sectionPositions = [];
-// default current section to home
 let currentSectionIndex;
 let sections = [];
 let navLinks = [];
@@ -17,12 +16,12 @@ let navLinks = [];
 // When the window scroll position changes, check to see if the page section on screen has changed and change navlink styling accordingly
 const onScroll = function () {
   let shouldSkip = false;
-  sectionPositions.forEach((sectionPosition, index) => {
-    
+  // Sections != true array; instead, it is "array-like". Foreach must be run as array.prototype.forEach.call
+  Array.prototype.forEach.call(sections, (section, index) => {
     // if we haven't already changed to a new section on this scroll instance:
     if(!shouldSkip){
       // If the top of the current window scroll position is between the top and bottom of this section
-      if(window.scrollY >= sectionPosition.boundingRect.top && window.scrollY <= sectionPosition.boundingRect.bottom){
+      if(section.getBoundingClientRect().top <= 0 && section.getBoundingClientRect().bottom > 0){
         //This is the current section on screen. Style it's corresponding navlink accordingly...
         console.log("Found the current section: " + sections[index].id);
         // ... IF it is not already the current section or if the current section has not been set yet
@@ -47,9 +46,7 @@ const onScroll = function () {
 function handleLinkClick(element){
   let sectionName = element.id;
   let position;
-  console.log("clicked link name: " + sectionName);
   for(let i = 0; i < sections.length; i++){
-    console.log("Checking against section with name " + sections[i].id);
     if(sections[i].id === sectionName){
       position = sections[i].getBoundingClientRect().top;
       console.log("position to scroll to: " + position);

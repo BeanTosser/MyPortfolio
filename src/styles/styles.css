@@ -15,7 +15,7 @@ html, body {
   .desktop_only{
     display: none;
   }
-  html {
+  html, body {
     /* Mobile font size will be about 2/3 of desktop font size.*/
     font-size: 10px;
   }
@@ -36,21 +36,21 @@ li {
   list-style: none;
 }
 
-/* Design for mobile first */
+#nav_header {
+  display: flex;
+  justify-content: space-between;
+  overflow: hidden;
+  font-size: 1.5rem;
+  position: fixed;
+  width: 100%;
+}
+
 #nav_bar {
 	background-color: black;
-	position: fixed;
 	width: 100%;
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-}
-
-#nav_header {
-	display: flex;
-	justify-content: space-between;
-	overflow: hidden;
-	font-size: 1.5rem;
 }
 
 #nav_menu {
@@ -82,15 +82,19 @@ li {
 #burger_menu{
 	margin-top: 6px;
 	margin-bottom: 6px;
-	margin-right: 10px;
-	float: right;
+	margin-right: 6px;
 }
 
 h1 {
-  font-size: 1em;
+	font-size: 2.5rem;
+	margin-block-start: 3rem;
+	margin-block-end: 1rem;
+	text-align: center;
+}
+
+#main_header > h1 {
+  font-size: 0.75em;
   color: white;
-  background-color: black;
-  text-align: center;
 }
 
 section#about{
@@ -119,12 +123,12 @@ section#about{
 .emphasis_text{
 	text-align: center;
   color: #8ec2ff;
-  font-size: .75em;
+  font-size: 1.75em;
   font-weight: ExtraBold;
 }
 
-.main_header {
-	font-size: 3rem;
+#main_header {
+	font-size: 3em;
 }
 
 section#home {
@@ -137,8 +141,13 @@ section#home {
 }
 
 section#work {
-	height: 200vh;
+	height: 1000px;
 	background-color:gray;
+}
+
+section#contact {
+	height:1500px;
+	background-color:orange;
 }
 
 main {
