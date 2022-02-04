@@ -7,22 +7,28 @@ let isMobile = false;
  * the current page section on every call to "onScollY"
  */
 let isScrolling = false;
-
-let sectionPositions = [];
 let currentSectionIndex;
 let sections = [];
+let sectionScrollDestinations = [];
 let navLinks = [];
+
+/*
+ * Needs to be taken into account when using the window height, as the bottom of the navbar is effectively
+ * the top of the window.
+ */
+let headerBarHeight;
 
 // When the window scroll position changes, check to see if the page section on screen has changed and change navlink styling accordingly
 const onScroll = function () {
   let shouldSkip = false;
   // Sections != true array; instead, it is "array-like". Foreach must be run as array.prototype.forEach.call
-  Array.prototype.forEach.call(sections, (section, index) => {
+  Array.prototype.forEach.call(sectionScrollDestinations, (section, index) => {
     // if we haven't already changed to a new section on this scroll instance:
     if(!shouldSkip){
       // If the top of the current window scroll position is between the top and bottom of this section
-      if(section.getBoundingClientRect().top <= 0 && section.getBoundingClientRect().bottom > 0){
-        //This is the current section on screen. Style it's corresponding navlink accordingly...
+      if(section.getBoundingClientRect().top <= 0 && 
+      sections[index].getBoundingClientRect().bottom - headerBarHeight > 0){
+        //This is the current section on screen. Style its corresponding navlink accordingly...
         console.log("Found the current section: " + sections[index].id);
         // ... IF it is not already the current section or if the current section has not been set yet
         console.log("currentSectionIndex: " + currentSectionIndex + "; index: " + index);
@@ -44,14 +50,13 @@ const onScroll = function () {
 };
 
 function handleLinkClick(element){
-  let sectionName = element.id;
-  let position;
+  console.log("Sections: " + JSON.stringify(sections));
   for(let i = 0; i < sections.length; i++){
-    if(sections[i].id === sectionName){
-      position = sections[i].getBoundingClientRect().top;
-      console.log("position to scroll to: " + position);
-      isScrolling = true;
-      scrollWindowForDuration(position, 100, function() {isScrolling = false});
+    console.log("");
+    console.log("section id: " + sections[i].id);
+    console.log("sectionScrollDest id: " + sectionScrollDestinations[i].id);
+    if(sectionScrollDestinations[i].id === element.id + "_anchor"){
+      sectionScrollDestinations[i].scrollIntoView({behavior: "smooth"});
       return;
     }
   }
@@ -63,17 +68,16 @@ window.onload = () => {
   if(window.innerWidth < MOBILE_WIDTH_THRESHOLD){
     isMobile = true;
   }
+  let headerBar = document.getElementById("nav_header");
+  headerBarHeight = headerBar.offsetHeight;
+  headerBarHeight += parseInt(window.getComputedStyle(headerBar).getPropertyValue('margin-top'));
+  headerBarHeight += parseInt(window.getComputedStyle(headerBar).getPropertyValue('margin-bottom'));
 
-  sections = document.getElementsByClassName("section");
+  sections = document.getElementsByClassName("main_section");
+  sectionScrollDestinations = document.getElementsByClassName("section_anchor");
   navLinks = document.getElementsByClassName("nav_link");
-  console.log("nav links:");
-  Array.prototype.forEach.call(navLinks, link => console.log(link.innerHTML));
-  sectionPositions = Array.prototype.map.call(sections, section => {
-    console.log("section id: " + section.id);
-    console.log("section position: " + section.getBoundingClientRect().top);
-    let sectionName = section.id;
-    return {name: sectionName, boundingRect: section.getBoundingClientRect()};
-  })
+
+  document.documentElement.style.setProperty('--nav-header-height', headerBarHeight.toString() + "px");
 
   document.addEventListener("scroll", onScroll);
   // Run onScroll to find out which section is the current section and style its link accordingly

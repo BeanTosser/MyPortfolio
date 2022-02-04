@@ -1,0 +1,22 @@
+.about_section_grid {
+  display: grid;
+  grid-template-areas:
+    "img  img"
+    "attr1 attr2"
+    "attr3 attr4"
+    "img"
+}
+
+.about_section{
+  border: 1px solid black;
+  min-width: 200px;
+}
+
+.main_section#about{
+  height:1500px;
+  background-color:pink;
+}
+
+.about_section_container{
+  width: 95%;
+}

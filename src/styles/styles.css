@@ -3,6 +3,12 @@
 :root {
 	--mobile-width: 500px;
 	--nav-link-spacing: 1rem;
+	/* 
+         * index.js sets nav-header-height programatically; it determines the total height of the nav bar;
+	 * this .css file uses that height value to displace the link anchor points so that scrolling takes
+	 * the nav bag into account
+	 */
+	--nav-header-height: 0px;
 }
 
 html, body {
@@ -15,16 +21,18 @@ html, body {
   .desktop_only{
     display: none;
   }
+  
   html, body {
     /* Mobile font size will be about 2/3 of desktop font size.*/
     font-size: 10px;
   }
 }
-@media only screen and (min-width:500px){
+
+@media only screen and (min-width:501px){
   .mobile_only{
     display: none;
   }
-  html {
+  html,body {
   /* The default font size is already 16. 
    * This CSS only reiterates this definition for clarity
    */
@@ -51,6 +59,16 @@ li {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
+	position: relative;
+}
+#nav_bar:after {
+  content: "";
+  display: block;
+  width:100%;
+  background-color: #2D4;
+  position: absolute;
+  height: 2px;
+  bottom: 0px;
 }
 
 #nav_menu {
@@ -87,8 +105,8 @@ li {
 
 h1 {
 	font-size: 2.5rem;
-	margin-block-start: 3rem;
-	margin-block-end: 1rem;
+	padding: 3rem;
+	margin: 0;
 	text-align: center;
 }
 
@@ -97,11 +115,7 @@ h1 {
   color: white;
 }
 
-section#about{
-	height:10000px;
-}
-
-.nav_link.current_section{
+.nav_link.current.main_section{
   text-decoration: underline;
   color: #99CCFF;	
 }
@@ -131,7 +145,7 @@ section#about{
 	font-size: 3em;
 }
 
-section#home {
+.main_section#home {
 	background-color: black;
 	width: 100vw;
 	height: 100vh;
@@ -140,14 +154,30 @@ section#home {
 	align-items: center;
 }
 
-section#work {
+.main_section#work {
 	height: 1000px;
 	background-color:gray;
 }
 
-section#contact {
+.main_section#contact {
 	height:1500px;
 	background-color:orange;
+}
+
+.section_anchor {
+	width:100vw;
+	position: relative;
+	height: 0px;
+	bottom: var(--nav-header-height);
+}
+.section_anchor.top_section_anchor {
+	top: 0px;
+	position: absolute;
+}
+
+.nav_link.current_section {
+  color: #CCDDFF;
+  text-decoration: underline;
 }
 
 main {
