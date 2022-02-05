@@ -1,22 +1,93 @@
+
 .about_section_grid {
   display: grid;
   grid-template-areas:
-    "img  img"
-    "attr1 attr2"
-    "attr3 attr4"
-    "img"
+    " img "
+    "blurb"
+    "atrbts"
+    "skills";
+}
+
+
+@media only screen and (min-width: 500px) {
+	.about_section_grid {
+	  grid-template-areas:
+	    "  img   img  "
+	    " blurb blurb "
+	    "atrbts skills"
+	}
 }
 
 .about_section{
   border: 1px solid black;
   min-width: 200px;
+  padding: 2rem;
+  text-align: center;
 }
 
 .main_section#about{
   height:1500px;
   background-color:pink;
+  text-align: center;
 }
 
 .about_section_container{
   width: 95%;
+  margin: 0 auto;
+}
+
+#skills_section{
+	grid-area: skills;
+}
+
+#image_section{
+	grid-area: img;
+}
+#image_section > img{
+	width:300px;
+	height:300px;
+}
+
+#blurb_section{
+	grid-area: blurb;
+}
+
+#attributes_section{
+	grid-area: atrbts;
+}
+
+.skill_meter{
+	width: 80%;
+	font-size: 1.5em;
+	background-color: #DEF;
+	border-radius: 1rem;
+	padding: 0;
+	margin: 0 0 1rem 1rem;
+}
+
+.skill_meter::before {
+	text-align: left;
+	background-color: #ACF;
+	border-radius: 1rem;
+	content: attr(data-skill-name);
+	float: left;
+}
+
+.skill_meter[data-skill-name="HTML"]::before{
+	width: 80%;
+}
+.skill_meter[data-skill-name="CSS"]::before{
+  width: 80%;
+}
+.skill_meter[data-skill-name="Javascript"]::before{
+  width: 80%;
+}
+.skill_meter[data-skill-name="Node.js"]::before{
+  width: 60%;
+}
+.skill_meter[data-skill-name="Typescript"]::before{
+  width: 70%;
+}
+.skill_meter[data-skill-name="React"]::before{
+  width: 80%;
 }
