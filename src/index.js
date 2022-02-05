@@ -68,6 +68,12 @@ window.onload = () => {
   if(window.innerWidth < MOBILE_WIDTH_THRESHOLD){
     isMobile = true;
   }
+  
+  // Workaround for unsuppored "target-densitydpi" meta attribute
+  const viewPortScale = 1 / window.devicePixelRatio;
+  const meta = document.getElementById("viewport");
+  meta.setAttribute("content", "user-scalable=no, initial-scale="+viewPortScale+", width=device-width")
+  
   let headerBar = document.getElementById("nav_header");
   headerBarHeight = headerBar.offsetHeight;
   headerBarHeight += parseInt(window.getComputedStyle(headerBar).getPropertyValue('margin-top'));
