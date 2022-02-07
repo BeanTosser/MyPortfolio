@@ -2,7 +2,7 @@
 
 :root {
 	--mobile-width: 500px;
-	--nav-link-spacing: 1rem;
+	--nav-link-spacing: 0.67rem;
 	/* 
          * index.js sets nav-header-height programatically; it determines the total height of the nav bar;
 	 * this .css file uses that height value to displace the link anchor points so that scrolling takes
@@ -24,7 +24,7 @@ html, body {
   
   html, body {
     /* Mobile font size will be about 2/3 of desktop font size.*/
-    font-size: 10px;
+    font-size: 16px;
   }
 }
 
@@ -36,7 +36,7 @@ html, body {
   /* The default font size is already 16. 
    * This CSS only reiterates this definition for clarity
    */
-   font-size: 16px;
+   font-size: 21px;
   }
 }
 
@@ -48,7 +48,7 @@ li {
   display: flex;
   justify-content: space-between;
   overflow: hidden;
-  font-size: 1.5rem;
+  font-size: 1rem;
   position: fixed;
   width: 100%;
 }
@@ -104,8 +104,7 @@ li {
 }
 
 h1 {
-	font-size: 2.5rem;
-	padding: 3rem;
+	padding: 1rem;
 	margin: 0;
 	text-align: center;
 }
@@ -142,7 +141,7 @@ h1 {
 }
 
 #main_header {
-	font-size: 3em;
+	font-size: 1.8rem;
 }
 
 .main_section#home {

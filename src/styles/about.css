@@ -28,6 +28,7 @@
   height:1500px;
   background-color:pink;
   text-align: center;
+  font-size: 1rem;
 }
 
 .about_section_container{
@@ -57,7 +58,7 @@
 
 .skill_meter{
 	width: 80%;
-	font-size: 1.5em;
+	font-size: 1.25em;
 	background-color: #DEF;
 	border-radius: 1rem;
 	padding: 0;
@@ -67,9 +68,10 @@
 .skill_meter::before {
 	text-align: left;
 	background-color: #ACF;
-	border-radius: 1rem;
+	border-radius: 1em;
 	content: attr(data-skill-name);
 	float: left;
+	height:100%;
 }
 
 .skill_meter[data-skill-name="HTML"]::before{
