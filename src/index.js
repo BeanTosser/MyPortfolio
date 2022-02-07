@@ -83,6 +83,20 @@ window.onload = () => {
   sectionScrollDestinations = document.getElementsByClassName("section_anchor");
   navLinks = document.getElementsByClassName("nav_link");
 
+  // Burger menu button toggles nav menu in mobile mode
+  let burgerButton = document.getElementById("burger_menu");
+  let navMenu = document.getElementById("nav_menu");
+  burgerButton.addEventListener("click", () => {
+    console.log("Burger clicked");
+    if(navMenu.class === "open") {
+      navMenu.class = "";
+      console.log("closing menu");
+    } else {
+      navMenu.class = "open";
+      console.log("Opening menu");
+    }
+  })
+
   document.documentElement.style.setProperty('--nav-header-height', headerBarHeight.toString() + "px");
 
   document.addEventListener("scroll", onScroll);

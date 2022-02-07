@@ -26,6 +26,17 @@ html, body {
     /* Mobile font size will be about 2/3 of desktop font size.*/
     font-size: 16px;
   }
+
+  #nav_menu {
+    visibility: hidden;
+  }
+  #nav_menu > * {
+    display: block;
+  }
+}
+
+#nav_menu.open{
+  visibility: visible;
 }
 
 @media only screen and (min-width:501px){
