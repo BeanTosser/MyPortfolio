@@ -88,11 +88,11 @@ window.onload = () => {
   let navMenu = document.getElementById("nav_menu");
   burgerButton.addEventListener("click", () => {
     console.log("Burger clicked");
-    if(navMenu.class === "open") {
-      navMenu.class = "";
+    if(navMenu.className === "open") {
+      navMenu.className = "";
       console.log("closing menu");
     } else {
-      navMenu.class = "open";
+      navMenu.className = "open";
       console.log("Opening menu");
     }
   })
