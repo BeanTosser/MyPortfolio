@@ -7,10 +7,13 @@ let isMobile = false;
  * the current page section on every call to "onScollY"
  */
 let isScrolling = false;
+// The index of the current page section in sections (as well as sectionScrollDestinations and the corresponding links in navLinks)
 let currentSectionIndex;
 let sections = [];
 let sectionScrollDestinations = [];
 let navLinks = [];
+// Store the header bar height margins to avoid unnecessary repeat calls to parseInt
+let headerBarHeightMargin = 0;
 
 /*
  * Needs to be taken into account when using the window height, as the bottom of the navbar is effectively
@@ -26,7 +29,7 @@ const onScroll = function () {
     // if we haven't already changed to a new section on this scroll instance:
     if(!shouldSkip){
       // If the top of the current window scroll position is between the top and bottom of this section
-      if(section.getBoundingClientRect().top <= 0 && 
+      if(section.getBoundingClientRect().top <= 0 + headerBarHeight && 
       sections[index].getBoundingClientRect().bottom - headerBarHeight > 0){
         //This is the current section on screen. Style its corresponding navlink accordingly...
         console.log("Found the current section: " + sections[index].id);
@@ -75,10 +78,10 @@ window.onload = () => {
   meta.setAttribute("content", "user-scalable=no, initial-scale="+viewPortScale+", width=device-width")
   
   let headerBar = document.getElementById("nav_header");
-  headerBarHeight = headerBar.offsetHeight;
-  headerBarHeight += parseInt(window.getComputedStyle(headerBar).getPropertyValue('margin-top'));
-  headerBarHeight += parseInt(window.getComputedStyle(headerBar).getPropertyValue('margin-bottom'));
-
+  headerBarHeightMargin = parseInt(window.getComputedStyle(headerBar).getPropertyValue('margin-top'));
+  headerBarHeightMargin += parseInt(window.getComputedStyle(headerBar).getPropertyValue('margin-bottom'));
+  headerBarHeight = headerBar.offsetHeight + headerBarHeightMargin;
+  
   sections = document.getElementsByClassName("main_section");
   sectionScrollDestinations = document.getElementsByClassName("section_anchor");
   navLinks = document.getElementsByClassName("nav_link");
@@ -87,7 +90,7 @@ window.onload = () => {
   let burgerButton = document.getElementById("burger_menu");
   let navMenu = document.getElementById("nav_menu");
   burgerButton.addEventListener("click", () => {
-    console.log("Burger clicked");
+    // Opening the mobile nav menu expands the nav bar, so we have to retrieve its new size every time it is opened or closed
     if(navMenu.className === "open") {
       navMenu.className = "";
       console.log("closing menu");
@@ -95,6 +98,13 @@ window.onload = () => {
       navMenu.className = "open";
       console.log("Opening menu");
     }
+    headerBarHeight = headerBar.offsetHeight + headerBarHeightMargin;
+    console.log("new headerBarHeight: " + headerBarHeight);
+    /* 
+     * The page uses "scroll destination" div elements; their presence allows us to easily scroll directly to a section
+     * with the "scrollIntoView" method. This line set their heights via a css variable.
+     */
+    document.documentElement.style.setProperty('--nav-header-height', headerBarHeight.toString() + "px");
   })
 
   document.documentElement.style.setProperty('--nav-header-height', headerBarHeight.toString() + "px");
